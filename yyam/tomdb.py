@@ -157,7 +157,7 @@ def tomdb_delete(items, sub_dic, org_dic, des_website=False, des_id=False):
         del org_dic[items['website']]
         return True
     elif des_id is True:
-        for x in set(org_dic[items].keys()) - {'total_number'}:
+        for x in set(org_dic[items['website']].keys()) - {'total_number'}:
             if org_dic[items['website']][x] is sub_dic:
                 del org_dic[items['website']][x]
                 break
@@ -167,11 +167,11 @@ def tomdb_delete(items, sub_dic, org_dic, des_website=False, des_id=False):
             org_dic[items['website']]['total_number'] -= 1
             total_num = org_dic[items['website']]['total_number']
             sub_item_arr = []
-            for x in set(org_dic[items['website']]) - {'total_number'}:
+            for x in set(org_dic[items['website']].keys()) - {'total_number'}:
                 sub_item_arr.append(org_dic[items['website']][x])
                 del org_dic[items['website']][x]
             for i in range(1, total_num + 1):
-                org_dic[items['website']][str(i)] = sub_item_arr[i]
+                org_dic[items['website']][str(i)] = sub_item_arr[i - 1]
         return True
     else:
         history_dic = {'username': '',
@@ -185,10 +185,15 @@ def tomdb_delete(items, sub_dic, org_dic, des_website=False, des_id=False):
         return tomdb_history_add(sub_dic, history_dic)
 
 
-def tomdb_read(f):
-    return toml.load(f)
+def tomdb_read(dir_path):
+    f = open(dir_path, 'r', encoding='utf-8')
+    org_dic = toml.load(f)
+    f.close()
+    return org_dic
 
 
-def tomdb_write(tom_dic, f):
-    dic_str = toml.dumps(tom_dic)
-    print(dic_str, file=f)
+def tomdb_write(dir_path, org_dic):
+    f = open(dir_path, 'w', encoding='utf-8')
+    toml.dump(org_dic, f)
+    f.close()
+    return True
