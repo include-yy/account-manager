@@ -43,6 +43,9 @@ def operation_delete(args, org_dic):
         return False
 
     target_item = input_select(search_arr)
+    if not target_item:
+        print('operation_delete: quit select')
+        return False
 
     for x in items_map.keys():
         items_map[x] = ''

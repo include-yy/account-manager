@@ -65,6 +65,10 @@ def operation_add_add(args, opt_set, org_dic):
         return False
 
     target_item = input_select(search_arr)
+    if not target_item:
+        print('operation_add_add: quit select')
+        return False
+
     sl_map = {'u': 'username',
               'p': 'password',
               'e': 'email',

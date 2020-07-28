@@ -34,9 +34,13 @@ def operation_list_gen(org_dic, f_list_all=False):
              'phone_number': ''}
 
     search_arr = tomdb_search(items, org_dic)
+    if not search_arr:
+        print('operation_list_gen: no item exist')
+        return True
+
     if f_list_all:
         print('make sure there is nobody around you')
-        validation_name = input_gen(None, '.+', 'author\'s name for validation')
+        validation_name = input_gen(None, '.+', "author's name for validation")
         if validation_name in ['yy', 'include-yy']:
             pass
         else:
@@ -52,6 +56,9 @@ def operation_list_gen(org_dic, f_list_all=False):
             print('email       :', x[1]['email'])
             print('phone number:', x[1]['phone_number'])
         print('')
+
+    print('the number of website is', len(org_dic.keys()))
+    print('the number of account is', len(ssearch_arr))
     return True
 
 

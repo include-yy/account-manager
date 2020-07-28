@@ -98,9 +98,11 @@ def option_make_set(opt_arr, regex_str):
 
 
 def input_select(search_arr):
-    if len(search_arr) == 1:
+    if len(search_arr) == 0:
+        print('input_select: no item to select')
+        return False
+    elif len(search_arr) == 1:
         return search_arr[0]
-
     count = 1
     for x in search_arr:
         print(count, ":")
@@ -109,9 +111,8 @@ def input_select(search_arr):
         print('username:', x[1]['username'])
         count = count + 1
 
-    in_number = input_gen(None, r'\d+', 'order number')
-    if in_number in [':q', ':q!', ':!q']:
-        print('input_select: quit select\n')
+    in_number = input_gen(None, r'(\d+)|(:!?q!?)', 'order number')
+    if in_number in [':q', ':q!', ':!q', ':!q!']:
         return False
     in_number = int(in_number)
     if count >= in_number >= 1:

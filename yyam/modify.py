@@ -40,6 +40,9 @@ def operation_modify(args, org_dic):
         return False
 
     target_item = input_select(search_arr)
+    if not target_item:
+        print('operation_modify: quit select')
+        return False
 
     sl_map = {'u': 'username',
               'p': 'password',

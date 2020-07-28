@@ -33,8 +33,8 @@ from .console_io import read_config, write_config
 
 
 def parser_init():
-    parser = argparse.ArgumentParser(description='account info manager',
-                                     epilog='author: include-yy, last modified time: 2020.7.27, 15:23, utc+8')
+    parser = argparse.ArgumentParser(description='yyam: account info manager',
+                                     epilog='author: include-yy, last modified time: 2020.7.28, 11:00, utc+8')
     group = parser.add_mutually_exclusive_group()
 
     group.add_argument('-a', '--add', metavar='items', nargs='+', default=False,
@@ -82,7 +82,7 @@ def main():
     type_check = operation_type_check(input_args)
 
     if not type_check:
-        print('no option specified, quit\n'
+        print('yyam: no option specified. quit',
               'type -h or --help for help')
         exit()
     elif type_check != 'configure':
