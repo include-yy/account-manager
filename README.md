@@ -204,7 +204,7 @@ wuipen 即账户的各个属性：网站，用户名，id，密码，邮箱和�
 首先，添加一个账号：
 
 ```
->yyam -w a 
+>yyam -a w 
 please input website :
 qq
 please input id :
