@@ -1,6 +1,7 @@
-import toml
 import re
 import datetime
+
+from .tomrw import *
 
 
 def tomdb_gen(website='',
@@ -187,13 +188,14 @@ def tomdb_delete(items, sub_dic, org_dic, des_website=False, des_id=False):
 
 def tomdb_read(dir_path):
     f = open(dir_path, 'r', encoding='utf-8')
-    org_dic = toml.load(f)
+    in_str = f.read()
+    org_dic = tom_parse(in_str)
     f.close()
     return org_dic
 
 
 def tomdb_write(dir_path, org_dic):
-    out_str = toml.dumps(org_dic)
+    out_str = tom_dump(org_dic)
     f = open(dir_path, 'w', encoding='utf-8')
     print(out_str, file=f)
     f.close()

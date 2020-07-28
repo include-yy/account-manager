@@ -129,7 +129,7 @@ def write_config(in_str):
     config['DEFAULT'] = {'path': in_str}
 
     try:
-        f = open(real_path + 'config.ini', 'w', encoding='utf-8')
+        f = open(real_path + 'config.py', 'w', encoding='utf-8')
         config.write(f)
     except FileNotFoundError:
         print('config file config.ini not found')
@@ -144,7 +144,7 @@ def read_config():
     config = configparser.ConfigParser()
     real_path = '%s/' % os.path.dirname(os.path.realpath(__file__))
     try:
-        f = open(real_path + 'config.ini', encoding='utf-8')
+        f = open(real_path + 'config.py', encoding='utf-8')
         config.read_file(f)
     except FileNotFoundError:
         print('config file config.ini not found, use -c [filename] option to create one')

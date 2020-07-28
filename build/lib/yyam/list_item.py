@@ -58,7 +58,7 @@ def operation_list_gen(org_dic, f_list_all=False):
         print('')
 
     print('the number of website is', len(org_dic.keys()))
-    print('the number of account is', len(ssearch_arr))
+    print('the number of account is', len(search_arr))
     return True
 
 

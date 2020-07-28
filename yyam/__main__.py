@@ -22,7 +22,6 @@
 
 
 import argparse
-import toml
 from .add import operation_add
 from .modify import operation_modify
 from .delete import operation_delete
@@ -34,7 +33,7 @@ from .console_io import read_config, write_config
 
 def parser_init():
     parser = argparse.ArgumentParser(description='yyam: account info manager',
-                                     epilog='author: include-yy, last modified time: 2020.7.28, 11:00, utc+8')
+                                     epilog='author: include-yy, last modified time: 2020.7.28, 15:05, utc+8')
     group = parser.add_mutually_exclusive_group()
 
     group.add_argument('-a', '--add', metavar='items', nargs='+', default=False,
@@ -103,9 +102,6 @@ def main():
         exit()
     except TypeError:
         print('toml: type error')
-        exit()
-    except toml.TomlDecodeError:
-        print('toml: file format error')
         exit()
 
     if type_check == 'add':
